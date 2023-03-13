@@ -30,7 +30,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: ghcr.io/minecraft-server
+        images: ghcr.io/${{ github.actor }}/minecraft-server
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v4
