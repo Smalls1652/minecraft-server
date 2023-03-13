@@ -16,6 +16,12 @@ RUN apt-get install -y \
 RUN apt-get autoremove -y; \
     apt-get clean -y
 
+# Create minecraft user and group
+RUN groupadd -g 1000 minecraft && useradd -u 1000 -g minecraft minecraft
+
+# Set user
+USER minecraft
+
 # Create app directory
 WORKDIR /app
 
