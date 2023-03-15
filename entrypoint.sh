@@ -5,4 +5,4 @@ if [[ ! -f /app/data/eula.txt ||  "$EULA" = "true" ]]; then
     echo "eula=true" > /app/data/eula.txt
 fi
 
-/app/jdk/bin/java -Xmx1024M -Xms1024M -jar /app/minecraft_server.1.19.3.jar nogui
+/app/jdk/bin/java -Xmx$MC_SERVER_MAX_HEAP_SIZE -Xms$MC_SERVER_INITIAL_HEAP_SIZE -jar "/app/minecraft_server.jar" nogui

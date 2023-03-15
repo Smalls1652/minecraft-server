@@ -2,6 +2,12 @@ FROM docker.io/library/ubuntu:22.04
 
 ARG MS_OPENJDK_VERSION="17.0.6"
 
+# Currently v1.19.4
+ARG MC_SERVER_JAR_URL="https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar"
+
+ENV MC_SERVER_INITIAL_HEAP_SIZE="1G"
+ENV MC_SERVER_MAX_HEAP_SIZE="1G"
+
 # Install updates
 RUN apt-get update; \
     apt-get upgrade -y
@@ -30,7 +36,7 @@ RUN mkdir ./jdk ; \
     curl -L "https://aka.ms/download-jdk/microsoft-jdk-${MS_OPENJDK_VERSION}-linux-x64.tar.gz" | tar -xz --directory "./jdk/" --strip-components=1
 
 # Download Minecraft Server
-RUN curl "https://piston-data.mojang.com/v1/objects/c9df48efed58511cdd0213c56b9013a7b5c9ac1f/server.jar" --output "./minecraft_server.1.19.3.jar"
+RUN curl "${MC_SERVER_JAR_URL}" --output "./minecraft_server.jar"
 
 # Copy entrypoint script
 COPY ./entrypoint.sh /app/entrypoint.sh
